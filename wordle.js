@@ -68,13 +68,24 @@ function update(){
 
   for (let c = 0; c < width; c++){
     let currentTile = document.getElementById(
-      row.toString() + "-" + col.toString()
+      row.toString() + "-" + c.toString()
     );
     let letter = currentTile.innerText;
 
     //if the letters are in the correct position
     if (word[c] == letter) {
-      tile.classList.add("correct");
+      currentTile.classList.add("correct");  //applying the class of the correct 
+      correct += 1;
+    }
+    else if (word.includes(letter)) {
+      currentTile.classList.add("present");
+    }
+    else {
+      currentTile.classList.add("absent");
+    }
+
+    if (correct == width) {
+      gameOver = true;
     }
   }
 
